@@ -56,7 +56,7 @@ def configure(conf):
 
 def build(bld):
   bld.program(
-    soruce = 'source.cpp',
+    source = 'source.cpp',
     target = 'target',
     use = ''
   )

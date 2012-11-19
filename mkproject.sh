@@ -42,6 +42,9 @@ fi
 
 if [ ! -f wscript ]; then
     cat > wscript <<EOF
+VERSION = '0.0.0'
+APPNAME = 'appname'
+
 def options(opt):
   opt.load('compiler_cxx')
   opt.load('unittest_gtest')

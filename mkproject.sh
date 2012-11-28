@@ -63,13 +63,16 @@ def build(bld):
 EOF
 fi
 
-if [ ! -f .gitignore]; then
+if [ ! -f .gitignore ]; then
     cat > .gitignore <<EOF
 *~
 #*#
 *_flymake.*
 *.pyc
 .unittest-gtest
+.waf-*
+build
+.lock-waf*
 EOF
 fi
 

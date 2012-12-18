@@ -28,7 +28,7 @@
 
 
 if [ ! -f waf ]; then
-    wget http://waf.googlecode.com/files/waf-1.6.9 -O waf
+    wget http://waf.googlecode.com/files/waf-1.6.11 -O waf
     chmod +x waf
 fi
 
@@ -66,13 +66,16 @@ def build(bld):
 EOF
 fi
 
-if [ ! -f .gitignore]; then
+if [ ! -f .gitignore ]; then
     cat > .gitignore <<EOF
 *~
 #*#
 *_flymake.*
 *.pyc
 .unittest-gtest
+.waf-*
+build
+.lock-waf*
 EOF
 fi
 

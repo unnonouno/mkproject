@@ -60,6 +60,31 @@ def build(bld):
     target = 'target',
     use = ''
   )
+
+def cpplint(ctx):
+  cpplint_args = '--filter=-runtime/references,-legal/copyright,-build/include_order --extensions=cpp,hpp'
+
+  src_dir = ctx.path.find_node('src')
+  files = []
+  for f in src_dir.ant_glob('**/*.cpp **/*.hpp'):
+    files.append(f.path_from(ctx.path))
+
+  args = 'cpplint.py %s %s' % (cpplint_args,' '.join(files))
+  result = ctx.exec_command(args)
+  if result != 0:
+    ctx.fatal('cpplint failed')
+
+def gcovr(ctx):
+  excludes = [
+    '.*\\.unittest-gtest.*',
+    '.*_test\\.cpp'
+    ]
+
+  args = 'gcovr --branches -r . '
+  for e in excludes:
+    args += ' -e "%s"' % e
+
+  ctx.exec_command(args)
 EOF
 fi
 

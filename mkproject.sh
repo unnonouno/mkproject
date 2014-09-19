@@ -28,7 +28,7 @@
 
 
 if [ ! -f waf ]; then
-    wget http://waf.googlecode.com/files/waf-1.7.10 -O waf
+    wget http://ftp.waf.io/pub/release/waf-1.7.16 -O waf
     chmod +x waf
 fi
 

@@ -57,6 +57,16 @@ def configure(conf):
     # conf.check_cfg(package='pficommon', args='--cflags --libs')
     # conf.check_cxx(lib='libname', header_name='header.h')
 
+    print('''
+Compiler:         %s
+Compiler version: %s
+CXXFLAGS:         %s
+LINKFLAGS:        %s
+''' % (conf.env.COMPILER_CXX,
+       '.'.join(conf.env.CC_VERSION),
+       ' '.join(conf.env.CXXFLAGS),
+       ' '.join(conf.env.LINKFLAGS)))
+
 def build(bld):
     bld.program(
         source='source.cpp',

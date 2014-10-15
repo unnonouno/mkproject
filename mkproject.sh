@@ -65,7 +65,7 @@ def build(bld):
     )
 
 def cpplint(ctx):
-    cpplint_args = '--filter=-runtime/references,-legal/copyright,-build/include_order --extensions=cpp,hpp'
+    cpplint_args = '--filter=-runtime/references,-build/include_order --extensions=cpp,hpp'
 
     src_dir = ctx.path.find_node('src')
     files = []

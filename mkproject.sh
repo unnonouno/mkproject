@@ -67,12 +67,14 @@ LINKFLAGS:        %s
        ' '.join(conf.env.CXXFLAGS),
        ' '.join(conf.env.LINKFLAGS)))
 
+
 def build(bld):
     bld.program(
         source='source.cpp',
         target='target',
         use=''
     )
+
 
 def cpplint(ctx):
     cpplint_args = '--filter=-runtime/references,-build/include_order --extensions=cpp,hpp'
@@ -82,16 +84,17 @@ def cpplint(ctx):
     for f in src_dir.ant_glob('**/*.cpp **/*.hpp'):
         files.append(f.path_from(ctx.path))
 
-    args = 'cpplint.py %s %s 2>&1 | grep -v ^Done' % (cpplint_args,' '.join(files))
+    args = 'cpplint.py %s %s 2>&1 | grep -v "^\(Done\|Total\)"' % (cpplint_args, ' '.join(files))
     result = ctx.exec_command(args)
     if result == 0:
         ctx.fatal('cpplint failed')
+
 
 def gcovr(ctx):
     excludes = [
         '.*\\.unittest-gtest.*',
         '.*_test\\.cpp',
-      ]
+    ]
 
     args = 'gcovr --branches -r . '
     for e in excludes:

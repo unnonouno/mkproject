@@ -1,0 +1,7 @@
+language: c++
+
+script:
+  - ./mkproject.sh
+  - echo "int main() {}" > source.cpp
+  - ./waf configure
+  - ./waf
